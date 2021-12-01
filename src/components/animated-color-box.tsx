@@ -1,7 +1,12 @@
 import { Box, IBoxProps, useToken } from 'native-base'
 import usePrevious from '../utils/use-previous'
-import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
-import { useEffect } from 'react'
+import Animated, {
+  interpolateColor,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming
+} from 'react-native-reanimated'
+import React, { useEffect } from 'react'
 
 const AnimatedBox = Animated.createAnimatedComponent(Box)
 
