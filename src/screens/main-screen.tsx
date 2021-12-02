@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react'
 import { Fab, Icon, Text, useColorModeValue, VStack } from 'native-base'
 import { AntDesign } from '@expo/vector-icons'
 import AnimatedColorBox from '../components/animated-color-box'
+import Masthead from '../components/masthead'
 
 const initialData = [
   {
@@ -53,11 +54,16 @@ export default function MainScreen() {
       bg={useColorModeValue('warmGray.50', 'primary.900')}
       w="full"
     >
-      <Text>Masthead</Text>
+      <Masthead
+        title="Good day, Ilan."
+        image={require('../assets/masthead.png')}
+      >
+        <Text>Navbar</Text>
+      </Masthead>
       <VStack
         flex={1}
         space={1}
-        bg={useColorModeValue('warmGray.50', 'primary.900')}
+        bg={useColorModeValue('warmGray.50', 'black')}
         mt="-20px"
         borderTopLeftRadius="20px"
         borderTopRightRadius="20px"
