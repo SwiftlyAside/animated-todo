@@ -8,13 +8,13 @@ import {
   Box,
   HStack,
   Input,
-  Text,
   themeTools,
   useColorModeValue,
   useTheme
 } from 'native-base'
 import AnimatedCheckbox from 'react-native-checkbox-reanimated'
 import { PanGestureHandlerProps } from 'react-native-gesture-handler'
+import AnimatedTaskLabel from './animated-task-label'
 
 interface Props extends Pick<PanGestureHandlerProps, 'simultaneousHandlers'> {
   isEditing: boolean
@@ -99,7 +99,14 @@ const TaskItem = ({
           onBlur={onFinishEditing}
         />
       ) : (
-        <Text>{subject}</Text>
+        <AnimatedTaskLabel
+          textColor={activeTextColor}
+          inactiveTextColor={doneTextColor}
+          strikethrough={isDone}
+          onPress={onPressLabel}
+        >
+          {subject}
+        </AnimatedTaskLabel>
       )}
     </HStack>
   )

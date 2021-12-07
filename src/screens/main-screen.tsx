@@ -4,6 +4,7 @@ import { Fab, Icon, Text, useColorModeValue, VStack } from 'native-base'
 import { AntDesign } from '@expo/vector-icons'
 import AnimatedColorBox from '../components/animated-color-box'
 import Masthead from '../components/masthead'
+import TaskItem from '../components/task-item'
 
 const initialData = [
   {
@@ -69,7 +70,7 @@ export default function MainScreen() {
         borderTopRightRadius="20px"
         pt="20px"
       >
-        <Text>TaskList</Text>
+        <TaskItem isEditing={false} isDone={true} subject="man" />
       </VStack>
       <Fab
         position="absolute"
