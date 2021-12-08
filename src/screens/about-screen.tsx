@@ -2,6 +2,7 @@ import React from 'react'
 import AnimatedColorBox from '../components/animated-color-box'
 import {
   Box,
+  Icon,
   Image,
   ScrollView,
   Text,
@@ -9,6 +10,9 @@ import {
   VStack
 } from 'native-base'
 import Masthead from '../components/masthead'
+import Navbar from '../components/navbar'
+import LinkButton from '../components/link-button'
+import { Feather } from '@expo/vector-icons'
 
 const AboutScreen = () => {
   return (
@@ -21,7 +25,7 @@ const AboutScreen = () => {
         title="About this app"
         image={require('../assets/about-masthead.png')}
       >
-        <Text>Navbar</Text>
+        <Navbar />
       </Masthead>
       <ScrollView
         borderTopLeftRadius="20px"
@@ -46,7 +50,19 @@ const AboutScreen = () => {
             This is a React Native app that I built to learn and practice. You
             can watch tutorial on this website.
           </Text>
-          <Text>LinkButton</Text>
+          <LinkButton
+            colorScheme="purple"
+            size="lg"
+            borderRadius="full"
+            href="https://github.com/craftzdog/react-native-animated-todo"
+            leftIcon={
+              <Icon as={Feather} name="external-link" size="sm" opacity={0.5} />
+            }
+          >
+            <Text fontSize="md" color="white">
+              View on GitHub
+            </Text>
+          </LinkButton>
         </VStack>
       </ScrollView>
     </AnimatedColorBox>

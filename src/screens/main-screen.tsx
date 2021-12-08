@@ -4,7 +4,8 @@ import { Fab, Icon, Text, useColorModeValue, VStack } from 'native-base'
 import { AntDesign } from '@expo/vector-icons'
 import AnimatedColorBox from '../components/animated-color-box'
 import Masthead from '../components/masthead'
-import TaskItem from '../components/task-item'
+import TaskList from '../components/task-list'
+import Navbar from '../components/navbar'
 
 const initialData = [
   {
@@ -23,18 +24,29 @@ export default function MainScreen() {
   const [data, setData] = useState(initialData)
   const [editingItemId, setEditingItemId] = useState<string | null>(null)
 
-  const handleToggleTaskItem = useCallback((item, newSubject) => {
+  const handleToggleTaskItem = useCallback((item) => {
     setData((prevData) => {
       const newData = [...prevData]
-      const itemIndex = prevData.indexOf(item)
-      newData[itemIndex] = {
+      const index = prevData.indexOf(item)
+      newData[index] = {
+        ...item,
+        done: !item.done
+      }
+      return newData
+    })
+  }, [])
+
+  const handleChangeTaskItemSubject = useCallback((item, newSubject) => {
+    setData((prevData) => {
+      const newData = [...prevData]
+      const index = prevData.indexOf(item)
+      newData[index] = {
         ...item,
         subject: newSubject
       }
       return newData
     })
   }, [])
-
   const handleFinishEditingTaskItem = useCallback(() => {
     setEditingItemId(null)
   }, [])
@@ -59,7 +71,7 @@ export default function MainScreen() {
         title="Good day, Ilan."
         image={require('../assets/masthead.png')}
       >
-        <Text>Navbar</Text>
+        <Navbar />
       </Masthead>
       <VStack
         flex={1}
@@ -70,7 +82,15 @@ export default function MainScreen() {
         borderTopRightRadius="20px"
         pt="20px"
       >
-        <TaskItem isEditing={false} isDone={true} subject="man" />
+        <TaskList
+          data={data}
+          onToggleItem={handleToggleTaskItem}
+          onChangeSubject={handleChangeTaskItemSubject}
+          onFinishEditing={handleFinishEditingTaskItem}
+          onPressLabel={handlePressTaskItemLabel}
+          onRemoveItem={handleRemoveItem}
+          editingItemId={editingItemId}
+        />
       </VStack>
       <Fab
         position="absolute"
